@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+    --color-cream: #e9e5cd;
+    --color-bronze: #a1785a;
+}
