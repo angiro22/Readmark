@@ -1,14 +1,32 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from '../components/Navbar';
+import { useState } from 'react';
+import { SignInPage } from './pages/SignInPage';
+import { SignUpPage } from './pages/SignUpPage';
+import { HomePage } from './pages/HomePage';
+
+type AppPage = 'home' | 'signin' | 'signup';
 
 function App() {
-  return (
-    <div className="min-h-screen bg-cream text-black font-sans">
-      
-      <Navbar />
-    </div>
-  )
+  const [page, setPage] = useState<AppPage>('home');
+
+  if (page === 'signin') {
+    return (
+      <SignInPage
+        onSignIn={() => setPage('home')}
+        onNavigateSignUp={() => setPage('signup')}
+      />
+    );
+  }
+
+  if (page === 'signup') {
+    return (
+      <SignUpPage
+        onSignUp={() => setPage('home')}
+        onNavigateSignIn={() => setPage('signin')}
+      />
+    );
+  }
+
+  return <HomePage />;
 }
 
-export default App
+export default App;
